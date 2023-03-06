@@ -1,20 +1,17 @@
-SavingAccount subclass: #SavingAccount
-instanceVariableNames: 'interest'
-classVariableNames: ''
-poolDictionaries: ''
-category: 'Banking'
-SavingAccount newWithNumber: aNumber customer: aCustomer balance: aBalance [
-    | savingAccount |
-    savingAccount := super new.
-    savingAccount
-        number: aNumber;
-        customer: aCustomer;
-        balance: aBalance;
-        interest: 0;
-        yourself.
-]
+Account subclass: SavingAccount [
+    | interest |
 
-accrue: rate [
-    interest := interest + balance * rate.
-    balance := balance + balance * rate.
+    SavingAccount new: number with: customer with: balance [
+        super new.
+        number := number.
+        customer := customer.
+        balance := balance.
+        interest := 0.
+        self.
+    ]
+
+    accrue: rate [
+        interest := interest + (balance * rate).
+        balance := balance + (balance * rate).
+    ]
 ]

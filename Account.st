@@ -1,24 +1,23 @@
-Account subclass: #CheckingAccount
-instanceVariableNames: 'number customer balance'
-classVariableNames: ''
-poolDictionaries: ''
-category: 'Banking'
-accrue: rate [
-    self subclassResponsibility
-]
+Object subclass: Account [
+    | number customer balance |
 
-balance [
-    ^ balance
-]
+    balance [
+        ^ balance
+    ]
 
-deposit: amount [
-    balance := balance + amount
-]
+    deposit: amount [
+        balance := balance + amount
+    ]
 
-withdraw: amount [
-    balance := balance - amount
-]
+    withdraw: amount [
+        balance := balance - amount
+    ]
 
-toString [
-    ^ number , ':' , customer , ':' , balance asString
+    toString [
+        ^ number, ':', customer asString, ':', balance asString
+    ]
+
+    accrue: rate [
+        self subclassResponsibility
+    ]
 ]

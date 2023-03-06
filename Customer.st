@@ -1,6 +1,11 @@
-Customer class:
-| name |
+Object subclass: Customer [
+    | name |
 
-Customer newWithName: aName [    name := aName.]
+    Customer new: aName [
+        name := aName.
+    ]
 
-toString [    ^ name]
+    toString [
+        ^ name
+    ]
+]

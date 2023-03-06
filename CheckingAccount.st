@@ -1,18 +1,13 @@
-CheckingAccount subclass: #CheckingAccount
-instanceVariableNames: ''
-classVariableNames: ''
-poolDictionaries: ''
-category: 'Banking'
-CheckingAccount newWithNumber: aNumber customer: aCustomer balance: aBalance [
-    | checkingAccount |
-    checkingAccount := super new.
-    checkingAccount
-        number: aNumber;
-        customer: aCustomer;
-        balance: aBalance;
-        yourself.
-]
+Account subclass: CheckingAccount [
+    CheckingAccount new: number with: customer with: balance [
+        super new.
+        number := number.
+        customer := customer.
+        balance := balance.
+        self.
+    ]
 
-accrue: rate [
-    "Do nothing for now"
+    accrue: rate [
+        "Nothing to do for checking accounts"
+    ]
 ]
