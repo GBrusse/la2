@@ -1,13 +1,10 @@
 Account subclass: SavingAccount [
     | interest |
 
-    SavingAccount new: number with: customer with: balance [
-        super new.
-        number := number.
-        customer := customer.
-        balance := balance.
+    initializeWith: aNumber with: aCustomer with: aBalance [
+        super initializeWith: aNumber with: aCustomer with: aBalance.
         interest := 0.
-        self.
+        ^ self
     ]
 
     accrue: rate [

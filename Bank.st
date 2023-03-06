@@ -1,10 +1,14 @@
 Set subclass: Bank [
     | accounts |
 
-    Bank new [
-        super new.
+    new [
+        ^ super new initialize
+    ]
+
+    initialize [
+        super initialize.
         accounts := Set new.
-        self.
+        ^ self
     ]
 
     add: anAccount [
@@ -12,14 +16,14 @@ Set subclass: Bank [
     ]
 
     accrue: rate [
-        accounts do: [ :each | each accrue: rate ]
+        accounts do: [:each | each accrue: rate]
     ]
 
     toString [
-        | r |
-        r := ''.
-        accounts do: [ :each | r := r, each asString, String cr ].
-        ^ r
+        | stream |
+        stream := String new writeStream.
+        accounts do: [:each | stream nextPutAll: each asString; cr].
+        ^ stream contents
     ]
 
     main [

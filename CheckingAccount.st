@@ -1,10 +1,7 @@
 Account subclass: CheckingAccount [
-    CheckingAccount new: number with: customer with: balance [
-        super new.
-        number := number.
-        customer := customer.
-        balance := balance.
-        self.
+    initializeWith: aNumber with: aCustomer with: aBalance [
+        super initializeWith: aNumber with: aCustomer with: aBalance.
+        ^ self
     ]
 
     accrue: rate [

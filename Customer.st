@@ -1,11 +1,4 @@
-Object subclass: Customer [
-    | name |
-
-    Customer new: aName [
-        name := aName.
-    ]
-
-    toString [
-        ^ name
-    ]
+Object subclass: Customer [ | name | new: aName [^ super new initializeWith: aName]
+    initializeWith: aName [name := aName. ^ self]
+    toString [^ name]
 ]
