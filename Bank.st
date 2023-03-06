@@ -1,25 +1,38 @@
-Object subclass: #Bank
-    instanceVariableNames: 'accounts customers'
-    classVariableNames: ''
-    poolDictionaries: ''
-    category: 'Banking'
+Bank class subclass: #Bank
+instanceVariableNames: 'accounts'
+classVariableNames: ''
+poolDictionaries: ''
+category: 'Banking'
+Bank new [
+    ^ super new initialize
+]
 
-accounts
-    ^ accounts
+initialize [
+    accounts := Set new.
+    ^ self
+]
 
-customers
-    ^ customers
+add: anAccount [
+    accounts add: anAccount.
+]
 
-initialize
-    accounts := OrderedCollection new.
-    customers := OrderedCollection new.
+accrue: rate [
+    accounts do: [:each | each accrue: rate]
+]
 
-addCustomer: aCustomer
-    customers add: aCustomer.
+toString [
+    | result |
+    result := ''.
+    accounts do: [:each | result := result , each asString , String cr].
+    ^ result
+]
 
-openAccountFor: aCustomer
-    | newAccount |
-    newAccount := CheckingAccount new.
-    newAccount initializeWithNumber: Account newAccountNumber andOwner: aCustomer.
-    accounts add: newAccount.
-    ^ newAccount
+main [
+    | bank c |
+    bank := Bank new.
+    c := Customer new: 'Ann'.
+    bank add: (CheckingAccount newWithNumber: '01001' customer: c balance: 100.00).
+    bank add: (SavingAccount newWithNumber: '01002' customer: c balance: 200.00).
+    bank accrue: 0.02.
+    Transcript show: bank asString.
+]

@@ -1,34 +1,24 @@
-Object subclass: #Account
-    instanceVariableNames: 'number balance owner'
-    classVariableNames: ''
-    poolDictionaries: ''
-    category: 'Banking'
+Account subclass: #CheckingAccount
+instanceVariableNames: 'number customer balance'
+classVariableNames: ''
+poolDictionaries: ''
+category: 'Banking'
+accrue: rate [
+    self subclassResponsibility
+]
 
-newAccountNumber
-    ^self class accountNumberSeed: self class accountNumberSeed + 1
-
-balance
+balance [
     ^ balance
+]
 
-deposit: anAmount
-    balance := balance + anAmount.
+deposit: amount [
+    balance := balance + amount
+]
 
-withdraw: anAmount
-    balance := balance - anAmount.
+withdraw: amount [
+    balance := balance - amount
+]
 
-number
-    ^ number
-
-owner
-    ^ owner
-
-initializeWithNumber: n andOwner: o
-    number := n.
-    owner := o.
-    balance := 0.
-
-accountNumberSeed
-    ^0
-
-accountNumberSeed: anInteger
-    accountNumberSeed := anInteger
+toString [
+    ^ number , ':' , customer , ':' , balance asString
+]

@@ -1,0 +1,2 @@
+#!/bin/bash
+gst Customer.st Account.st CheckingAccount.st SavingAccount.st Bank.st
